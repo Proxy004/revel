@@ -3,11 +3,7 @@ import Main from "./src/Main";
 import { View } from "react-native";
 
 const App = () => {
-  return (
-    <View>
-      <Main />;
-    </View>
-  );
+  return <Main />;
 };
 
 export default App;
