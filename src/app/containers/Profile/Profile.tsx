@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-
-const Profile = () => {
+type findProps = {
+  navigation: any;
+};
+const Profile: React.FC<findProps> = ({ navigation }) => {
   return (
     <View>
       <Text>Profile</Text>

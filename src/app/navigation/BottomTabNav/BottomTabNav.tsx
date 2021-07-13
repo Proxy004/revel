@@ -1,24 +1,92 @@
-import React from "react";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import React, { useEffect, useState } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { appearanceStore } from "../../stores/appearanceStore";
+import Icons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { StatusBar } from "native-base";
+//screens
+import { HomeStackScreen } from "../Stacks/Stacks";
+import { FindStackScreen } from "../Stacks/Stacks";
+import { NewStackScreen } from "../Stacks/Stacks";
+import { ChatStackScreen } from "../Stacks/Stacks";
+import { ProfileStackScreen } from "../Stacks/Stacks";
 
-export type NavProps = {
-  home: any;
-  find: any;
-  newTab: any;
-  profile: any;
+const tab = createBottomTabNavigator();
+
+type NavProps = {
+  theme: any;
 };
-const Tab = createMaterialBottomTabNavigator();
+const Navigation: React.FC<NavProps> = ({ theme }) => {
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    if (appearanceStore.platform === "ios") {
+      setHeight(80);
+    } else setHeight(55);
+  }, []);
 
-const Navigation: React.FC<NavProps> = ({ home, find, newTab, profile }) => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={home} />
-        <Tab.Screen name="Find" component={find} />
-        <Tab.Screen name="New" component={newTab} />
-        <Tab.Screen name="Profile" component={profile} />
-      </Tab.Navigator>
+    <NavigationContainer theme={theme}>
+      {appearanceStore.darkModeBool ? (
+        <StatusBar barStyle="light-content" />
+      ) : (
+        <StatusBar barStyle="dark-content" />
+      )}
+
+      <tab.Navigator
+        tabBarOptions={{
+          showLabel: false,
+          style: {
+            height: height,
+          },
+        }}
+      >
+        <tab.Screen
+          name={"Home"}
+          component={HomeStackScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icons name="home" size={size} color={color} />
+            ),
+          }}
+        />
+        <tab.Screen
+          name={"Find"}
+          component={FindStackScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="search" size={size} color={color} />
+            ),
+          }}
+        />
+        <tab.Screen
+          name={"New"}
+          component={NewStackScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="plus" size={size} color={color} />
+            ),
+          }}
+        />
+        <tab.Screen
+          name={"Chat"}
+          component={ChatStackScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icons name="chatbubble" size={size} color={color} />
+            ),
+          }}
+        />
+        <tab.Screen
+          name={"Profile"}
+          component={ProfileStackScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="user" size={size} color={color} />
+            ),
+          }}
+        />
+      </tab.Navigator>
     </NavigationContainer>
   );
 };

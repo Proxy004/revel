@@ -3,12 +3,12 @@ import { View, Text } from "react-native";
 type findProps = {
   navigation: any;
 };
-const New: React.FC<findProps> = ({ navigation }) => {
+const Chat: React.FC<findProps> = ({ navigation }) => {
   return (
     <View>
-      <Text>New</Text>
+      <Text>Chat</Text>
     </View>
   );
 };
 
-export default New;
+export default Chat;

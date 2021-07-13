@@ -1,42 +1,50 @@
 import React from "react";
-import { NativeBaseProvider, extendTheme, View } from "native-base";
+import { Provider } from "mobx-react";
+import { NativeBaseProvider } from "native-base";
 import Navigation from "./app/navigation/BottomTabNav/BottomTabNav";
+import { useColorScheme, Platform } from "react-native";
+import AppLoading from "expo-app-loading";
+import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 
-//containers
-import Find from "./app/containers/Find/Find";
-import Home from "./app/containers/Home/Home";
-import New from "./app/containers/New/New";
-import Profile from "./app/containers/Profile/Profile";
+//NativeBaseTheme
+import { nativeTheme } from "./app/styles/NativeBaseStyes";
+
+//NormalTheme
+import { normalTheme } from "./app/styles/NormalTheme";
+
+//store
+import { appearanceStore } from "./app/stores/appearanceStore";
 
 const Main = () => {
-  const theme = extendTheme({
-    colors: {
-      primary: {
-        50: "#E3F2F9",
-        100: "#C5E4F3",
-        200: "#A2D4EC",
-        300: "#7AC1E4",
-        400: "#47A9DA",
-        500: "#0088CC",
-        600: "#007AB8",
-        700: "#006BA1",
-        800: "#005885",
-        900: "#003F5E",
-      },
-
-      amber: {
-        400: "#d97706",
-      },
-    },
-    config: {
-      initialColorMode: "white",
-    },
+  //fonts
+  const [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
   });
+  //checkColorScheme
+  const scheme = useColorScheme();
+  if (scheme === "dark") {
+    appearanceStore.setDarkMode(true);
+  } else {
+    appearanceStore.setDarkMode(false);
+  }
+  //checkIosOrAndroid
+  if (Platform.OS === "ios") {
+    appearanceStore.platform = "ios";
+  } else {
+    appearanceStore.platform = "android";
+  }
 
-  return (
-    <NativeBaseProvider theme={theme}>
-      <Navigation home={Home} find={Find} newTab={New} profile={Profile} />
-    </NativeBaseProvider>
-  );
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <Provider store={appearanceStore}>
+        <NativeBaseProvider theme={nativeTheme}>
+          <Navigation theme={normalTheme} />
+        </NativeBaseProvider>
+      </Provider>
+    );
+  }
 };
+
 export default Main;

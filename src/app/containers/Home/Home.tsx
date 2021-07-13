@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
-
-const Home = () => {
+import { StyleSheet } from "react-native";
+import { View, Box, Text } from "native-base";
+type findProps = {
+  navigation: any;
+};
+const Home: React.FC<findProps> = ({ navigation }) => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <Box safeArea>
+      <Text fontFamily="body" fontWeight={100} fontStyle="normal">
+        Home
+      </Text>
+    </Box>
   );
 };
+const homeStyles = StyleSheet.create({});
 
 export default Home;

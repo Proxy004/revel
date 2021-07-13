@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
-
-const Find = () => {
+type findProps = {
+  navigation: any;
+};
+const Find: React.FC<findProps> = ({ navigation }) => {
   return (
     <View>
       <Text>Find</Text>
