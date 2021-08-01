@@ -3,12 +3,13 @@ import { Image, View } from "native-base";
 import Icons from "react-native-vector-icons/Ionicons";
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+import IconBW from "../../assets/IconBW";
 
 const width = Dimensions.get("window").width;
 const Header = () => {
   return (
     <View style={headerStyle.allHeader}>
-      <Image source={require("../../assets/icon_bw.png")} alt="icon" />
+      <IconBW width="50%" height="50%" />
       <Icons name="settings" size={25} />
     </View>
   );

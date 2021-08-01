@@ -1,5 +1,5 @@
 import React from "react";
-import { Provider } from "mobx-react";
+
 import { NativeBaseProvider } from "native-base";
 import Navigation from "./app/navigation/BottomTabNav/BottomTabNav";
 import { useColorScheme, Platform } from "react-native";
@@ -14,6 +14,7 @@ import { normalTheme } from "./app/styles/NormalTheme";
 
 //store
 import { appearanceStore } from "./app/stores/appearanceStore";
+import { authStore } from "./app/stores/authStore";
 
 const Main = () => {
   //fonts
@@ -34,15 +35,13 @@ const Main = () => {
     appearanceStore.platform = "android";
   }
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded && authStore.isLoading === false) {
     return <AppLoading />;
   } else {
     return (
-      <Provider store={appearanceStore}>
-        <NativeBaseProvider theme={nativeTheme}>
-          <Navigation theme={normalTheme} />
-        </NativeBaseProvider>
-      </Provider>
+      <NativeBaseProvider theme={nativeTheme}>
+        <Navigation theme={normalTheme} />
+      </NativeBaseProvider>
     );
   }
 };

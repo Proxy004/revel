@@ -18,9 +18,15 @@
     "@types/react-router-native": "^5.1.0",
     "expo": "~42.0.0",
     "expo-app-loading": "^1.1.2",
+    "expo-application": "~3.2.0",
+    "expo-auth-session": "^3.3.1",
     "expo-font": "~9.2.1",
+    "expo-google-sign-in": "~9.2.1",
     "expo-localization": "~10.2.0",
+    "expo-random": "^11.2.0",
     "expo-status-bar": "~1.0.4",
+    "expo-web-browser": "^9.2.0",
+    "firebase": "8.2.3",
     "i18next": "^20.3.2",
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
@@ -29,6 +35,7 @@
     "react-dom": "16.13.1",
     "react-i18next": "^11.11.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-dotenv": "^3.1.1",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-paper": "^4.9.2",
     "react-native-reanimated": "~2.2.0",
@@ -39,13 +46,15 @@
     "react-native-web": "^0.17.1",
     "react-navigation": "^4.4.4",
     "styled-components": "^5.3.0",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "undefined": "expo-auth-session/providers/google"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "@types/react-native-vector-icons": "^6.4.7",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "typescript": "~4.0.0"
   },
   "private": true

@@ -1,4 +1,3 @@
-import React from "react";
 import { observable, action, makeAutoObservable } from "mobx";
 
 class AppearanceStore {

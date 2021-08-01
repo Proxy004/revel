@@ -1,14 +1,31 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { inject, observer } from "mobx-react";
+import { Button, VStack, Text } from "native-base";
+import { authStore } from "../../stores/authStore";
 type findProps = {
   navigation: any;
 };
 const Profile: React.FC<findProps> = ({ navigation }) => {
   return (
-    <View>
+    <VStack
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 50,
+      }}
+    >
       <Text>Profile</Text>
-    </View>
+
+      <Button
+        onPress={() => {
+          authStore.changeLoggedIn(false);
+        }}
+      >
+        Logout
+      </Button>
+    </VStack>
   );
 };
 
-export default Profile;
+export default inject("authStore")(observer(Profile));
