@@ -1,7 +1,7 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
-import { IconButton } from "native-base";
+import { Pressable, Image } from "native-base";
 import { authStore } from "../../stores/authStore";
 import { inject, observer } from "mobx-react";
 
@@ -13,22 +13,33 @@ const GoogleLogIn = () => {
     webClientId: process.env.GOOGEL_WEB_CLIENT_ID,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (response?.type === "success") {
       const { authentication } = response;
+      authStore.setToken(authentication);
       console.log(authentication);
       authStore.changeLoggedIn(true);
     }
   }, [response]);
 
   return (
-    <IconButton
+    <Pressable
       disabled={!request}
       onPress={() => {
         promptAsync();
       }}
-      icon={require("../../assets/google.png")}
-    />
+    >
+      <Image
+        source={require("../../assets/google.png")}
+        alt="google"
+        style={{
+          height: 71,
+          maxWidth: "75%",
+
+          resizeMode: "contain",
+        }}
+      />
+    </Pressable>
   );
 };
 

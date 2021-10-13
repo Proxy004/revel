@@ -20,6 +20,7 @@ const Profile: React.FC<findProps> = ({ navigation }) => {
       <Button
         onPress={() => {
           authStore.changeLoggedIn(false);
+          authStore.clearToken();
         }}
       >
         Logout

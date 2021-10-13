@@ -1,8 +1,8 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import * as WebBrowser from "expo-web-browser";
 import * as Facebook from "expo-auth-session/providers/facebook";
 import { ResponseType } from "expo-auth-session";
-import { Button } from "react-native";
+import { Pressable, Image } from "native-base";
 import { authStore } from "../../stores/authStore";
 import { inject, observer } from "mobx-react";
 WebBrowser.maybeCompleteAuthSession();
@@ -13,21 +13,32 @@ const FacebookLogin = () => {
     responseType: ResponseType.Code,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (response?.type === "success") {
       const { code } = response.params;
+      authStore.setToken(code);
       authStore.changeLoggedIn(true);
     }
   }, [response]);
 
   return (
-    <Button
+    <Pressable
       disabled={!request}
-      title="Login"
       onPress={() => {
         promptAsync();
       }}
-    />
+    >
+      <Image
+        source={require("../../assets/facebook.png")}
+        alt="google"
+        style={{
+          height: 70,
+          maxWidth: "75%",
+
+          resizeMode: "contain",
+        }}
+      />
+    </Pressable>
   );
 };
 

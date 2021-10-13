@@ -1,61 +1,61 @@
-import React, { useState } from "react";
-import IconBW from "../../assets/IconBW";
-import { StyleSheet, KeyboardAvoidingView } from "react-native";
-import { Box, FormControl, Input, Stack, Button } from "native-base";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Stack, Image } from "native-base";
+import { Video } from "expo-av";
 import Google from "../../components/Google/Google";
 import Facebook from "../../components/Facebook/Facebook";
+import { StatusBar } from "native-base";
+import { alignItems } from "styled-system";
 
 const SignUp = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClick = () => setShow(!show);
   return (
-    <Stack
-      space={4}
-      px={12}
-      mt={10}
-      safeArea
-      direction="column"
-      style={styles.allSignUpForm}
-    >
-      {/* <KeyboardAvoidingView behavior="position">
-        <IconBW fill="black" />
+    <>
+      <Image
+        source={require("../../assets/logoWhite.png")}
+        alt="Revel"
+        style={styles.logo}
+      />
+      <Stack
+        safeAreaBottom
+        safeAreaTop={false}
+        direction="column"
+        style={styles.allSignUpForm}
+      >
+        <StatusBar barStyle="light-content" />
+        <Video
+          source={require("../../assets/signupvideo.mp4")}
+          isLooping
+          isMuted
+          resizeMode={"cover"}
+          shouldPlay
+          style={styles.video}
+        />
 
-        <FormControl>
-          <FormControl.Label>E-Mail</FormControl.Label>
-          <Input placeholder="max@revel.com" />
-          <FormControl.ErrorMessage>
-            Provide a real E-Mail!
-          </FormControl.ErrorMessage>
-        </FormControl>
-        <FormControl style={{ marginTop: 20 }}>
-          <FormControl.Label>Password</FormControl.Label>
-          <Input
-            placeholder="Password"
-            type={show ? "text" : "password"}
-            InputRightElement={
-              <Button
-                ml={1}
-                roundedLeft={0}
-                roundedRight="md"
-                onPress={handleClick}
-              >
-                {show ? "Hide" : "Show"}
-              </Button>
-            }
-          />
-          <FormControl.ErrorMessage>
-            Provide a Password with at least 6 letters and 2 numbers.
-          </FormControl.ErrorMessage>
-        </FormControl>
-      </KeyboardAvoidingView> */}
-
-      <Google />
-      <Facebook />
-    </Stack>
+        <Google />
+        <Facebook />
+      </Stack>
+    </>
   );
 };
 const styles = StyleSheet.create({
-  allSignUpForm: { justifyContent: "center" },
+  allSignUpForm: {
+    display: "flex",
+    height: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  logo: {
+    alignSelf: "center",
+    maxWidth: "37%",
+    resizeMode: "contain",
+    position: "absolute",
+    marginTop: "50%",
+    zIndex: 50,
+  },
+  video: {
+    width: "150%",
+    height: "150%",
+    position: "absolute",
+  },
 });
 export default SignUp;
