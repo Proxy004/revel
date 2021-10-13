@@ -1,10 +1,14 @@
 import { observable, action, makeAutoObservable } from "mobx";
 
-class AuthStore {
+class UserStore {
   @observable Name: string = "";
+  @observable Mail: string = "";
 
   @action changeName = (name: string) => {
     this.Name = name;
+  };
+  @action changeMail = (mail: string) => {
+    this.Mail = mail;
   };
 
   constructor() {
@@ -12,4 +16,4 @@ class AuthStore {
   }
 }
 
-export const authStore = new AuthStore();
+export const userStore = new UserStore();

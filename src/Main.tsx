@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { NativeBaseProvider } from "native-base";
 import Navigation from "./app/navigation/BottomTabNav/BottomTabNav";
@@ -17,10 +17,29 @@ import { appearanceStore } from "./app/stores/appearanceStore";
 import { authStore } from "./app/stores/authStore";
 
 const Main = () => {
-  //fonts
+  useEffect(() => {
+    const checkToken = async () => {
+      await authStore.checkToken();
+    };
+    checkToken();
+  }, []);
+
   const [fontsLoaded] = useFonts({
     Montserrat_400Regular,
   });
+
+  if (
+    authStore.token &&
+    Object.keys(authStore.token).length === 0 &&
+    authStore.token.constructor === Object &&
+    fontsLoaded
+  ) {
+    authStore.changeLoggedIn(true);
+    authStore.changeLoading(false);
+  } else if (fontsLoaded) {
+    authStore.changeLoading(false);
+  }
+
   //checkColorScheme
   const scheme = useColorScheme();
   if (scheme === "dark") {
@@ -35,7 +54,7 @@ const Main = () => {
     appearanceStore.platform = "android";
   }
 
-  if (!fontsLoaded && authStore.isLoading === false) {
+  if (authStore.isLoading === false && !fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
