@@ -31,8 +31,7 @@ const Main = () => {
   if (
     authStore.token &&
     Object.keys(authStore.token).length === 0 &&
-    authStore.token.constructor === Object &&
-    fontsLoaded
+    authStore.token.constructor === Object
   ) {
     authStore.changeLoggedIn(true);
     authStore.changeLoading(false);
