@@ -3,14 +3,18 @@ import { Image, View } from "native-base";
 import Icons from "react-native-vector-icons/Ionicons";
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
-import IconBW from "../../assets/IconBW";
 
 const width = Dimensions.get("window").width;
 const Header = () => {
   return (
     <View style={headerStyle.allHeader}>
-      <IconBW width="50%" height="50%" />
-      <Icons name="settings" size={25} />
+      <Image
+        size={12}
+        source={require("../../assets/RevelBWNew.png")}
+        alt={"Icon"}
+        width={240}
+      />
+      <Icons name="settings" size={30} style={{ paddingRight: 15 }} />
     </View>
   );
 };
@@ -21,7 +25,6 @@ const headerStyle = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: width,
-    paddingLeft: 15,
     paddingRight: 15,
     alignItems: "center",
   },

@@ -6,20 +6,19 @@ import New from "../../containers/New/New";
 import Profile from "../../containers/Profile/Profile";
 import Chat from "../../containers/Chat/Chat";
 import Header from "../../components/Header/Header";
+import { notifyListeners } from "mobx/dist/internal";
 
 const HomeStack = createStackNavigator();
 
 export const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator initialRouteName="Home">
-      <HomeStack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerTitle: (props) => <Header />,
-          headerStyle: { height: 100 },
-        }}
-      />
+    <HomeStack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
   );
 };
@@ -28,7 +27,12 @@ const FindStack = createStackNavigator();
 
 export const FindStackScreen = () => {
   return (
-    <FindStack.Navigator initialRouteName="Find">
+    <FindStack.Navigator
+      initialRouteName="Find"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <FindStack.Screen
         name="Find"
         component={Find}
@@ -45,7 +49,12 @@ const NewStack = createStackNavigator();
 
 export const NewStackScreen = () => {
   return (
-    <NewStack.Navigator initialRouteName="New">
+    <NewStack.Navigator
+      initialRouteName="New"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <NewStack.Screen
         name="New"
         component={New}
@@ -67,8 +76,8 @@ export const ChatStackScreen = () => {
         name="Chat"
         component={Chat}
         options={{
-          headerTitle: (props) => <Header />,
-          headerStyle: { height: 100 },
+          headerTitle: "",
+          headerStyle: { height: 70 },
         }}
       />
     </ChatStack.Navigator>
@@ -85,7 +94,7 @@ export const ProfileStackScreen = () => {
         component={Profile}
         options={{
           headerTitle: (props) => <Header />,
-          headerStyle: { height: 100 },
+          headerStyle: { height: 70 },
         }}
       />
     </ProfileStack.Navigator>

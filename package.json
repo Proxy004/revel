@@ -10,7 +10,7 @@
   "dependencies": {
     "@expo-google-fonts/montserrat": "^0.2.0",
     "@expo/configure-splash-screen": "^0.5.0",
-    "@react-native-async-storage/async-storage": "^1.15.5",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/elements": "^1.0.0-next.19",
@@ -39,6 +39,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-dotenv": "^3.1.1",
     "react-native-gesture-handler": "~1.10.2",
+    "react-native-maps": "^0.29.3",
     "react-native-paper": "^4.9.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",

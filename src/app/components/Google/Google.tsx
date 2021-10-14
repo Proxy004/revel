@@ -10,14 +10,13 @@ WebBrowser.maybeCompleteAuthSession();
 const GoogleLogIn = () => {
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: process.env.GOOGLE_CLIENT_ID,
-    webClientId: process.env.GOOGEL_WEB_CLIENT_ID,
+    webClientId: process.env.GOOGLE_WEB_CLIENT_ID,
   });
 
   useEffect(() => {
     if (response?.type === "success") {
       const { authentication } = response;
       authStore.setToken(authentication);
-      console.log(authentication);
       authStore.changeLoggedIn(true);
     }
   }, [response]);
